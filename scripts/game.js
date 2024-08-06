@@ -11,10 +11,24 @@ function startGame() {
     if (localStorage.getItem('userLoggedIn') === 'true') {
         homeContainer.classList.add('hidden');
         gameContainer.classList.remove('hidden');
+        startAR();
     } else {
         alert('You need to be logged in to start the game.');
         window.location.href = 'login.html';
     }
+}
+
+function startAR() {
+    const scene = document.querySelector('a-scene');
+    const marker = document.querySelector('a-marker');
+
+    marker.addEventListener('markerFound', () => {
+        alert('Marker found. Start scanning.');
+        setTimeout(() => {
+            alert("Scanned your home. Click 'Finish' to complete.");
+            finishButton.classList.remove('hidden');
+        }, 10000);
+    });
 }
 
 function finishScan() {

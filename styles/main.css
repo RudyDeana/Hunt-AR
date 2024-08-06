@@ -1,125 +1,46 @@
-body {
-    font-family: 'Arial', sans-serif;
+/* Resetta i margini e il padding per tutti gli elementi */
+* {
     margin: 0;
     padding: 0;
-    background-color: #000000; /* Sfondo nero */
-    color: #ffffff;
-    text-align: center;
+    box-sizing: border-box;
 }
 
-.container {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 600px;
-    background: rgba(0, 0, 0, 0.9); /* Sfondo quasi nero per il contenitore */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 1s ease-in-out; /* Aggiungi un'animazione di fade-in */
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #66ff66; /* Verde meno acido */
-}
-
-button {
-    padding: 15px 30px;
-    border: none;
-    background-color: #66ff66; /* Verde meno acido */
-    color: #000000;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    margin: 20px 0;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background-color: #55cc55; /* Verde scuro per l'hover */
-    transform: scale(1.1);
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    padding: 10px;
-    font-size: 16px;
-    margin: 10px;
-    border: 1px solid #66ff66; /* Verde meno acido */
-    border-radius: 5px;
-    width: calc(100% - 22px);
-}
-
-a {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    text-decoration: none;
-    color: #000000;
-    background-color: #66ff66; /* Verde meno acido */
-    border-radius: 10px;
-    font-size: 18px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-a:hover {
-    background-color: #55cc55; /* Verde scuro per l'hover */
-    transform: scale(1.1);
-}
-
-#credits {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    color: #66ff66; /* Verde meno acido */
-}
-
-.difficulty {
-    margin: 20px 0;
-}
-
-.difficulty select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #66ff66; /* Verde meno acido */
-    border-radius: 5px;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-video, canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-/* Resto del CSS */
-.hidden {
-    display: none;
-}
-
-#home-container {
-    text-align: center;
-    padding: 20px;
+/* Corpo della pagina */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
     background-color: #000000; /* Sfondo nero */
     color: #66ff66; /* Testo verde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Nascondi overflow per evitare barre di scorrimento indesiderate */
 }
 
+/* Contenitore principale della pagina */
+.container {
+    text-align: center;
+}
+
+/* Stile per l'intestazione */
 #header, #game-header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #333333; /* Grigio scuro */
     color: #ffffff;
+    position: relative;
+    z-index: 10;
 }
 
+/* Stile per il display dei crediti */
 #credit-display, #game-credit-display {
     font-size: 1.2em;
 }
 
+/* Stile per i pulsanti */
 button {
     padding: 15px 30px;
     border: none;
@@ -130,13 +51,16 @@ button {
     cursor: pointer;
     margin: 20px 0;
     transition: background-color 0.3s, transform 0.3s;
+    position: relative;
 }
 
+/* Effetto hover per i pulsanti */
 button:hover {
     background-color: #55cc55; /* Verde scuro per l'hover */
     transform: scale(1.1);
 }
 
+/* Contenitore del gioco */
 #game-container {
     position: relative;
     width: 100%;
@@ -144,7 +68,8 @@ button:hover {
     background-color: black;
 }
 
-#video, #canvas {
+/* Scene AR - occupa tutto lo spazio disponibile */
+a-scene {
     position: absolute;
     top: 0;
     left: 0;
@@ -153,24 +78,29 @@ button:hover {
     z-index: 1;
 }
 
+/* Pulsanti in alto a destra e in basso a sinistra */
 #exit-button, #hint-button, #finish-button {
     z-index: 2;
+    background-color: #66ff66;
+    color: #000000;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }
 
-#exit-button {
-    margin-left: 10px;
+/* Effetto hover per i pulsanti AR */
+#exit-button:hover, #hint-button:hover, #finish-button:hover {
+    background-color: #55cc55;
 }
 
-#hint-button {
-    margin-right: 10px;
-}
-
+/* Pulsante di terminazione - posizione fissa in basso a sinistra */
 #finish-button {
     position: absolute;
     bottom: 20px;
     left: 20px;
 }
 
-#exit-button:hover, #hint-button:hover, #finish-button:hover {
-    background-color: #55cc55;
+/* Nasconde gli elementi con la classe 'hidden' */
+.hidden {
+    display: none;
 }
