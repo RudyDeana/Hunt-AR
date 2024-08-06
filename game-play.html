@@ -41,18 +41,25 @@
     </style>
 </head>
 <body>
+    <div id="header-placeholder"></div>
     <div class="container">
-        <h1>Start Your Treasure Hunt!</h1>
-        <p>Select the difficulty level:</p>
-        <button onclick="startGame('easy')">Easy</button>
-        <button onclick="startGame('medium')">Medium</button>
-        <button onclick="startGame('hard')">Hard</button>
-        <button onclick="startGame('impossible')">Impossible</button>
+        <h1>Start Your Treasure Hunt</h1>
+        <button onclick="startScan()">Start Scanning</button>
     </div>
     <script>
-        function startGame(difficulty) {
-            localStorage.setItem('difficulty', difficulty);
-            window.location.href = 'game-play-start.html';
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        function startScan() {
+            if (localStorage.getItem('userLoggedIn') === 'true') {
+                window.location.href = 'game-play-start.html';
+            } else {
+                alert('You need to be logged in to start the game.');
+                window.location.href = 'login.html';
+            }
         }
     </script>
 </body>

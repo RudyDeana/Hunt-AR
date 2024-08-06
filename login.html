@@ -8,56 +8,66 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background: #e0f7fa;
+            color: #00796b;
         }
-        form {
+        .container {
             margin: 20px auto;
-            max-width: 400px;
             padding: 20px;
+            max-width: 400px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
         input {
-            display: block;
-            margin: 10px auto;
             padding: 10px;
-            width: calc(100% - 22px);
-            border: 1px solid #ddd;
+            font-size: 16px;
+            margin: 10px;
+            border: 1px solid #00796b;
             border-radius: 5px;
+            width: calc(100% - 22px);
         }
         button {
-            padding: 10px;
-            width: 100%;
+            padding: 10px 20px;
             border: none;
             background-color: #007bff;
             color: white;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 18px;
+            cursor: pointer;
         }
         button:hover {
             background-color: #0056b3;
         }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form id="login-form">
-        <input type="text" id="login-username" placeholder="Username" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="register.html">Register here</a></p>
-    <script src="app.js"></script>
+    <div class="container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="login-message"></p>
+    </div>
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // For simplicity, let's assume login is successful if both fields are filled
+            if (username && password) {
+                localStorage.setItem('userLoggedIn', 'true');
+                window.location.href = 'game.html';
+            } else {
+                document.getElementById('login-message').innerText = 'Please enter both username and password.';
+            }
+        }
+    </script>
 </body>
 </html>

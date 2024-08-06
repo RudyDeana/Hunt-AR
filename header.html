@@ -1,48 +1,30 @@
+<!-- header.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - AR Treasure Hunt</title>
+    <title>AR Treasure Hunt</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            color: white;
-        }
-        .container {
+        .welcome-header {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            text-decoration: none;
+            background: #007bff;
             color: white;
-            background-color: #007bff;
-            border-radius: 10px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        a:hover {
-            background-color: #0056b3;
+        .welcome-header h1 {
+            margin: 0;
         }
-        .language-switcher {
-            margin-top: 20px;
+        .welcome-header .language-switcher {
+            margin-left: auto;
         }
-        .language-switcher select {
+        .welcome-header select {
             font-size: 16px;
             padding: 5px;
             border: none;
@@ -53,12 +35,8 @@
     </style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
-    <div class="container">
-        <h1 id="welcome-message">Welcome to AR Treasure Hunt</h1>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="game.html">Play Game</a>
+    <div class="welcome-header" id="welcome-header">
+        <h1>Welcome to AR Treasure Hunt</h1>
         <div class="language-switcher">
             <select id="language-selector">
                 <option value="en">English</option>
@@ -67,21 +45,17 @@
         </div>
     </div>
     <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-
-        const savedLanguage = localStorage.getItem('language') || 'en';
-        document.getElementById('language-selector').value = savedLanguage;
-        applyLanguage(savedLanguage);
-
         document.getElementById('language-selector').addEventListener('change', function() {
             const selectedLanguage = this.value;
             localStorage.setItem('language', selectedLanguage);
-            applyLanguage(selectedLanguage);
+            location.reload();
         });
+
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage) {
+            document.getElementById('language-selector').value = savedLanguage;
+            applyLanguage(savedLanguage);
+        }
 
         function applyLanguage(language) {
             const translations = {
@@ -108,14 +82,14 @@
             };
 
             const translation = translations[language] || translations.en;
-            document.getElementById('welcome-message').innerText = translation.welcome;
-            document.querySelector('a[href="game.html"]').innerText = translation.play;
+
+            document.querySelector('h1').innerText = translation.welcome;
+            document.querySelector('button[onclick="startGame()"]').innerText = translation.play;
             document.querySelector('a[href="login.html"]').innerText = translation.login;
             document.querySelector('a[href="register.html"]').innerText = translation.register;
             document.querySelector('a[href="instructions.html"]').innerText = translation.instructions;
             document.querySelector('#hint').innerText = translation.hint;
             document.querySelector('button[onclick="startScan()"]').innerText = translation.start;
-            document.querySelector('button[onclick="checkLogin()"]').innerText = translation.play;
         }
     </script>
 </body>

@@ -23,6 +23,7 @@
         }
         h1 {
             font-size: 2.5em;
+            margin-bottom: 20px;
         }
         button {
             padding: 10px 20px;
@@ -42,17 +43,21 @@
 <body>
     <div class="container">
         <h1>AR Treasure Hunt</h1>
-        <p>Scan your surroundings and find hidden treasures!</p>
-        <button onclick="startGame()">Start Game</button>
-        <button onclick="viewInstructions()">Instructions</button>
+        <p>You must be logged in to play the game.</p>
+        <button onclick="checkLogin()">Check Login Status</button>
+        <button onclick="redirectToLogin()">Login</button>
     </div>
     <script>
-        function startGame() {
-            window.location.href = 'game-play.html';
+        function checkLogin() {
+            if (localStorage.getItem('userLoggedIn') === 'true') {
+                window.location.href = 'game-play.html';
+            } else {
+                alert('Please log in to play the game.');
+            }
         }
 
-        function viewInstructions() {
-            window.location.href = 'instructions.html';
+        function redirectToLogin() {
+            window.location.href = 'login.html';
         }
     </script>
 </body>
