@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - AR Treasure Hunt</title>
+    <title>Home - AR Treasure Hunt</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <div class="container">
         <h1>Welcome to AR Treasure Hunt</h1>
         <div id="credits">Credits: 100</div>
-        <a href="game.html">Play Game</a>
-        <div class="language-switcher">
-            <select id="language-selector">
-                <option value="en">English</option>
-                <option value="it">Italiano</option>
+        <div class="difficulty">
+            <h2>Select Difficulty</h2>
+            <select id="difficulty">
+                <option value="easy">Easy (50 Credits)</option>
+                <option value="medium">Medium (100 Credits)</option>
+                <option value="hard">Hard (150 Credits)</option>
+                <option value="impossible">Impossible (1000 Credits)</option>
             </select>
         </div>
+        <button onclick="startScan()">Play Game</button>
     </div>
+    <script src="scripts/game.js"></script>
     <script src="scripts/main.js"></script>
 </body>
 </html>

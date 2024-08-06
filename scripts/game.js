@@ -1,27 +1,64 @@
 function startScan() {
     if (localStorage.getItem('userLoggedIn') === 'true') {
-        // Simulate starting the AR scan
+        // Create video element
+        const video = document.createElement('video');
+        video.style.position = 'absolute';
+        video.style.top = '0';
+        video.style.left = '0';
+        video.style.width = '100%';
+        video.style.height = '100%';
+        document.body.appendChild(video);
+
+        // Access camera
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
-                const video = document.createElement('video');
                 video.srcObject = stream;
-                video.autoplay = true;
-                video.style.position = 'absolute';
-                video.style.top = '0';
-                video.style.left = '0';
-                video.style.width = '100%';
-                video.style.height = '100%';
-                document.body.appendChild(video);
+                video.play();
 
-                // Simulate AR scanning with a delay
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                document.body.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+
+                const points = []; // Store scanned points
+
+                function draw() {
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'green';
+                    points.forEach(point => {
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 10, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(draw);
+                }
+
+                draw();
+
+                // Simulate AR scanning
                 setTimeout(() => {
-                    alert("Scanned your home and found a clue!");
                     document.body.removeChild(video);
-                }, 5000); // Adjust the time as needed
+                    document.body.removeChild(canvas);
+                    alert("Scanned your home. Click 'Finish' to complete.");
+                    document.getElementById('finish-button').style.display = 'block';
+                }, 10000); // Adjust time as needed
             })
             .catch(err => {
                 alert('Error accessing the camera: ' + err);
             });
+
+        // Handle finish button
+        const finishButton = document.createElement('button');
+        finishButton.id = 'finish-button';
+        finishButton.style.display = 'none';
+        finishButton.innerText = 'Finish';
+        finishButton.onclick = () => {
+            // End scanning and hide button
+            finishButton.style.display = 'none';
+            alert("Start finding hidden objects around your home!");
+        };
+        document.body.appendChild(finishButton);
     } else {
         alert('You need to be logged in to start the game.');
         window.location.href = 'login.html';
