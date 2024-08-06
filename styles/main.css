@@ -38,7 +38,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"] {
     padding: 10px;
     font-size: 16px;
     margin: 10px;
@@ -63,15 +63,7 @@ a:hover {
     background-color: #0056b3;
 }
 
-.language-switcher {
-    margin-top: 20px;
-}
-
-.language-switcher select {
-    font-size: 16px;
-    padding: 5px;
-    border: 1px solid #00796b;
-    border-radius: 5px;
-    background-color: white;
-    color: #007bff;
+#credits {
+    font-size: 1.2em;
+    margin-bottom: 20px;
 }
