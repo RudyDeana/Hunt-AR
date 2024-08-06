@@ -4,56 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome - AR Treasure Hunt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            color: white;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            text-decoration: none;
-            color: white;
-            background-color: #007bff;
-            border-radius: 10px;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-        a:hover {
-            background-color: #0056b3;
-        }
-        .language-switcher {
-            margin-top: 20px;
-        }
-        .language-switcher select {
-            font-size: 16px;
-            padding: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: white;
-            color: #007bff;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <div id="header-placeholder"></div>
     <div class="container">
         <h1 id="welcome-message">Welcome to AR Treasure Hunt</h1>
         <a href="login.html">Login</a>
@@ -66,57 +19,6 @@
             </select>
         </div>
     </div>
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-
-        const savedLanguage = localStorage.getItem('language') || 'en';
-        document.getElementById('language-selector').value = savedLanguage;
-        applyLanguage(savedLanguage);
-
-        document.getElementById('language-selector').addEventListener('change', function() {
-            const selectedLanguage = this.value;
-            localStorage.setItem('language', selectedLanguage);
-            applyLanguage(selectedLanguage);
-        });
-
-        function applyLanguage(language) {
-            const translations = {
-                en: {
-                    welcome: "Welcome to AR Treasure Hunt",
-                    play: "Play Game",
-                    login: "Login",
-                    register: "Register",
-                    instructions: "Instructions",
-                    start: "Start Scanning",
-                    hint: "Get ready to start your hunt!",
-                    found: "Congratulations! You found the treasure!"
-                },
-                it: {
-                    welcome: "Benvenuto in AR Treasure Hunt",
-                    play: "Gioca",
-                    login: "Accedi",
-                    register: "Registrati",
-                    instructions: "Istruzioni",
-                    start: "Inizia la Scansione",
-                    hint: "Preparati a iniziare la tua caccia!",
-                    found: "Congratulazioni! Hai trovato il tesoro!"
-                }
-            };
-
-            const translation = translations[language] || translations.en;
-            document.getElementById('welcome-message').innerText = translation.welcome;
-            document.querySelector('a[href="game.html"]').innerText = translation.play;
-            document.querySelector('a[href="login.html"]').innerText = translation.login;
-            document.querySelector('a[href="register.html"]').innerText = translation.register;
-            document.querySelector('a[href="instructions.html"]').innerText = translation.instructions;
-            document.querySelector('#hint').innerText = translation.hint;
-            document.querySelector('button[onclick="startScan()"]').innerText = translation.start;
-            document.querySelector('button[onclick="checkLogin()"]').innerText = translation.play;
-        }
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

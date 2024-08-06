@@ -3,105 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - AR Treasure Hunt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: #e0f7fa;
-            color: #00796b;
-        }
-        .container {
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 600px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .scan-container {
-            margin-top: 20px;
-        }
-    </style>
+    <title>AR Treasure Hunt - Game</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <div class="container">
-        <h1>Treasure Hunt Instructions</h1>
-        <p id="hint">Get ready to start your hunt!</p>
-        <button onclick="startScan()">Start Scanning</button>
+        <h1 id="scan-title">Scan Your Home</h1>
+        <button onclick="startScanning()">Start Scanning</button>
+        <div id="instructions"></div>
     </div>
-    <script>
-        // Initialize the game state
-        function startScan() {
-            const difficulty = localStorage.getItem('difficulty') || 'easy';
-            const hints = {
-                easy: [
-                    "Look under the sofa",
-                    "Check the bookshelf",
-                    "See the kitchen counter"
-                ],
-                medium: [
-                    "Behind the curtains",
-                    "Under the bed",
-                    "In the garage"
-                ],
-                hard: [
-                    "In the attic",
-                    "Inside the closet",
-                    "Behind the painting"
-                ],
-                impossible: [
-                    "Check the attic's hidden compartment",
-                    "Inside the secret drawer",
-                    "Under the loose floorboard"
-                ]
-            };
-
-            const treasure = {
-                easy: "Congratulations! You found the treasure!",
-                medium: "Great job! You discovered the treasure!",
-                hard: "Well done! The treasure is yours!",
-                impossible: "Incredible! You found the ultimate treasure!"
-            };
-
-            let hintMessage = '';
-            const difficultyHints = hints[difficulty];
-            const numHints = difficulty === 'impossible' ? 1 : 3;
-
-            for (let i = 0; i < numHints; i++) {
-                hintMessage += difficultyHints[i] + '<br>';
-            }
-
-            document.getElementById('hint').innerHTML = hintMessage;
-
-            // Simulate scanning and finding the treasure
-            setTimeout(() => {
-                alert(treasure[difficulty]);
-            }, 10000); // 10 seconds delay
-        }
-    </script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
