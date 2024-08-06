@@ -96,7 +96,6 @@ video, canvas {
     height: 100%;
 }
 /* Resto del CSS */
-/* Resto del CSS */
 .hidden {
     display: none;
 }
@@ -110,7 +109,7 @@ video, canvas {
 
 #header, #game-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px;
     background-color: #333333; /* Grigio scuro */
