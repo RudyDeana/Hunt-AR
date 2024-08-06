@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = localStorage.getItem('language') || 'en';
-    document.getElementById('language-selector').value = savedLanguage;
     applyLanguage(savedLanguage);
 
-    document.getElementById('language-selector').addEventListener('change', function() {
-        const selectedLanguage = this.value;
-        localStorage.setItem('language', selectedLanguage);
-        applyLanguage(selectedLanguage);
-    });
+    const languageSelector = document.getElementById('language-selector');
+    if (languageSelector) {
+        languageSelector.value = savedLanguage;
+        languageSelector.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            localStorage.setItem('language', selectedLanguage);
+            applyLanguage(selectedLanguage);
+        });
+    }
 });
 
 function applyLanguage(language) {
@@ -17,8 +20,8 @@ function applyLanguage(language) {
             play: "Play Game",
             login: "Login",
             register: "Register",
-            instructions: "Instructions",
             start: "Start Scanning",
+            credits: "Credits",
             hint: "Get ready to start your hunt!",
             found: "Congratulations! You found the treasure!",
             scan: "Scan Your Home"
@@ -28,8 +31,8 @@ function applyLanguage(language) {
             play: "Gioca",
             login: "Accedi",
             register: "Registrati",
-            instructions: "Istruzioni",
             start: "Inizia la Scansione",
+            credits: "Crediti",
             hint: "Preparati a iniziare la tua caccia!",
             found: "Congratulazioni! Hai trovato il tesoro!",
             scan: "Scansiona la tua casa"
@@ -37,10 +40,8 @@ function applyLanguage(language) {
     };
 
     const translation = translations[language] || translations.en;
-    document.querySelector('h1').innerText = translation.welcome || translation.scan;
-    document.querySelector('a[href="game.html"]').innerText = translation.play;
-    document.querySelector('a[href="login.html"]').innerText = translation.login;
-    document.querySelector('a[href="register.html"]').innerText = translation.register;
-    document.querySelector('#hint').innerText = translation.hint;
-    document.querySelector('button[onclick="startScan()"]').innerText = translation.start;
+    document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        el.innerText = translation[key] || key;
+    });
 }
