@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - AR Treasure Hunt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .language-switcher select {
+            font-size: 16px;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to AR Treasure Hunt</h1>
+        <div>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="game.html">Play Game</a>
+        </div>
+    </div>
+    <div class="language-switcher">
+        <select id="language-selector">
+            <option value="en">English</option>
+            <option value="it">Italiano</option>
+        </select>
+    </div>
+    <script>
+        document.getElementById('language-selector').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            localStorage.setItem('language', selectedLanguage);
+            // Optionally, you can reload the page to apply language changes
+            location.reload();
+        });
+
+        // Apply the saved language if available
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage) {
+            document.getElementById('language-selector').value = savedLanguage;
+        }
+    </script>
+</body>
+</html>
