@@ -96,8 +96,46 @@ video, canvas {
     height: 100%;
 }
 /* Resto del CSS */
+/* Resto del CSS */
 .hidden {
     display: none;
+}
+
+#home-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #000000; /* Sfondo nero */
+    color: #66ff66; /* Testo verde */
+}
+
+#header, #game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333333; /* Grigio scuro */
+    color: #ffffff;
+}
+
+#credit-display, #game-credit-display {
+    font-size: 1.2em;
+}
+
+button {
+    padding: 15px 30px;
+    border: none;
+    background-color: #66ff66; /* Verde meno acido */
+    color: #000000;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #55cc55; /* Verde scuro per l'hover */
+    transform: scale(1.1);
 }
 
 #game-container {
@@ -117,29 +155,19 @@ video, canvas {
 }
 
 #exit-button, #hint-button, #finish-button {
-    position: absolute;
     z-index: 2;
-    padding: 10px 20px;
-    background-color: #66ff66;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 #exit-button {
-    top: 20px;
-    left: 20px;
+    margin-left: 10px;
 }
 
 #hint-button {
-    top: 20px;
-    right: 20px;
+    margin-right: 10px;
 }
 
 #finish-button {
+    position: absolute;
     bottom: 20px;
     left: 20px;
 }
