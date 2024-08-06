@@ -1,6 +1,5 @@
 function startScan() {
     if (localStorage.getItem('userLoggedIn') === 'true') {
-        // Create video element
         const video = document.createElement('video');
         video.style.position = 'absolute';
         video.style.top = '0';
@@ -9,7 +8,6 @@ function startScan() {
         video.style.height = '100%';
         document.body.appendChild(video);
 
-        // Access camera
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
                 video.srcObject = stream;
@@ -18,10 +16,13 @@ function startScan() {
                 const canvas = document.createElement('canvas');
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
+                canvas.style.position = 'absolute';
+                canvas.style.top = '0';
+                canvas.style.left = '0';
                 document.body.appendChild(canvas);
                 const ctx = canvas.getContext('2d');
 
-                const points = []; // Store scanned points
+                const points = [];
 
                 function draw() {
                     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -34,27 +35,31 @@ function startScan() {
                     requestAnimationFrame(draw);
                 }
 
+                canvas.addEventListener('click', event => {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    points.push({ x, y });
+                });
+
                 draw();
 
-                // Simulate AR scanning
                 setTimeout(() => {
                     document.body.removeChild(video);
                     document.body.removeChild(canvas);
                     alert("Scanned your home. Click 'Finish' to complete.");
                     document.getElementById('finish-button').style.display = 'block';
-                }, 10000); // Adjust time as needed
+                }, 10000);
             })
             .catch(err => {
                 alert('Error accessing the camera: ' + err);
             });
 
-        // Handle finish button
         const finishButton = document.createElement('button');
         finishButton.id = 'finish-button';
         finishButton.style.display = 'none';
         finishButton.innerText = 'Finish';
         finishButton.onclick = () => {
-            // End scanning and hide button
             finishButton.style.display = 'none';
             alert("Start finding hidden objects around your home!");
         };
