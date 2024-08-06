@@ -95,3 +95,55 @@ video, canvas {
     width: 100%;
     height: 100%;
 }
+/* Resto del CSS */
+.hidden {
+    display: none;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+}
+
+#video, #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#exit-button, #hint-button, #finish-button {
+    position: absolute;
+    z-index: 2;
+    padding: 10px 20px;
+    background-color: #66ff66;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#exit-button {
+    top: 20px;
+    left: 20px;
+}
+
+#hint-button {
+    top: 20px;
+    right: 20px;
+}
+
+#finish-button {
+    bottom: 20px;
+    left: 20px;
+}
+
+#exit-button:hover, #hint-button:hover, #finish-button:hover {
+    background-color: #55cc55;
+}
